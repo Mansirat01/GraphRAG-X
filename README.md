@@ -1,5 +1,5 @@
 
-# GraphRAG-X  
+# GraphRAG-X 
 ## Hybrid Knowledge Graph Enhanced Retrieval-Augmented Generation System
 
 GraphRAG-X is a full-stack AI system that enhances traditional Retrieval-Augmented Generation (RAG) by integrating Knowledge Graph reasoning with vector-based semantic search to enable explainable, multi-hop, and context-aware question answering over unstructured documents.
