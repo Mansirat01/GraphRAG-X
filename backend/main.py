@@ -26,6 +26,7 @@ async def upload_document(file: UploadFile = File(...)):
     # Chunk text
     chunks = chunk_text(text)
 
+    #return
     return {
         "filename": file.filename,
         "total_characters": len(text),
