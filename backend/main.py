@@ -7,12 +7,18 @@ from services.document_loader import load_document
 from services.text_chunker import chunk_text
 from services.embedding_model import EmbeddingModel
 from services.vector_store import VectorStore
+from services.graph_store import GraphStore
+from dotenv import load_dotenv
+
+load_dotenv()
+
+graph_store = GraphStore()
 
 app = FastAPI()
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-
+print("URI:", os.getenv("NEO4J_URI"))
 embedding_model = EmbeddingModel()
 vector_store = None
 
@@ -29,7 +35,8 @@ async def upload_document(file: UploadFile = File(...)):
 
     # Chunk text
     chunks = chunk_text(text)
-
+    # Create document node in Neo4j
+    graph_store.store_document_with_chunks(file.filename, chunks)
     # Generate embeddings
     embeddings = embedding_model.encode(chunks)
 
